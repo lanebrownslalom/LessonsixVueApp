@@ -25,6 +25,7 @@ defineProps<{
 
 <style scoped>
 .link-button {
+  background-color: rgb(var(--v-theme-surface-variant));
   border-color: rgb(var(--v-theme-surface-variant));
   color: rgb(var(--v-theme-on-surface));
   transition:
