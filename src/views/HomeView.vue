@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useTheme } from 'vuetify'
+import LinkButton from '@/components/LinkButton.vue'
 
 const isDark = ref(false)
 const theme = useTheme()
@@ -79,22 +80,13 @@ function toggleTheme() {
           </div>
 
           <nav class="d-flex flex-column ga-3" aria-label="Lane Brown's links">
-            <v-btn
+            <LinkButton
               v-for="link in links"
               :key="link.label"
-              class="link-button text-none"
-              :href="link.href"
-              :target="link.href.startsWith('mailto:') ? undefined : '_blank'"
-              :rel="link.href.startsWith('mailto:') ? undefined : 'noreferrer'"
-              :prepend-icon="link.icon"
-              append-icon="mdi-arrow-top-right"
-              block
-              height="56"
-              rounded="lg"
-              variant="outlined"
-            >
-              {{ link.label }}
-            </v-btn>
+              :label="link.label"
+              :url="link.href"
+              :icon="link.icon"
+            />
           </nav>
 
           <p class="card-footer text-center mt-6">
@@ -159,25 +151,6 @@ function toggleTheme() {
   line-height: 1.65;
   opacity: 1;
   white-space: normal;
-}
-
-.link-button {
-  border-color: rgb(var(--v-theme-surface-variant));
-  color: rgb(var(--v-theme-on-surface));
-  transition:
-    transform 200ms ease,
-    border-color 200ms ease,
-    box-shadow 200ms ease,
-    background-color 200ms ease;
-}
-
-.link-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 18px rgb(53 43 29 / 8%);
-}
-
-.link-button :deep(.v-btn__prepend .v-icon) {
-  color: rgb(var(--v-theme-primary));
 }
 
 .card-footer {
