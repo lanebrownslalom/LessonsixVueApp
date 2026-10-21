@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useTheme } from 'vuetify'
 import LinkButton from '@/components/LinkButton.vue'
+import SocialLinkButton from '@/components/SocialLinkButton.vue'
 
 const isDark = ref(false)
 const theme = useTheme()
@@ -11,6 +12,11 @@ const links = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/', icon: 'mdi-linkedin' },
   { label: 'Email', href: 'mailto:lane@example.com', icon: 'mdi-email-outline' },
   { label: 'Substack', href: 'https://substack.com/', icon: 'mdi-text-box-outline' },
+]
+
+const socialLinks: { label: string; href: string; icon: string; image?: string }[] = [
+  { label: 'Instagram', href: 'https://www.instagram.com/lanebrown', icon: 'mdi-instagram' },
+  { label: 'X', href: 'https://x.com/lanek', icon: 'mdi-alpha-x', image: '/x-logo.jpg' },
 ]
 
 function toggleTheme() {
@@ -93,6 +99,17 @@ function toggleTheme() {
             Thanks for stopping by
             <v-icon color="primary" icon="mdi-creation" size="small" aria-hidden="true" />
           </p>
+
+          <nav class="social-links d-flex justify-center ga-4 mt-4" aria-label="Social media links">
+            <SocialLinkButton
+              v-for="link in socialLinks"
+              :key="link.label"
+              :label="link.label"
+              :url="link.href"
+              :icon="link.icon"
+              :image="link.image"
+            />
+          </nav>
         </v-card-text>
       </v-card>
     </v-container>
